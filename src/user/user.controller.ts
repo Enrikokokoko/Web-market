@@ -9,22 +9,22 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    return `this.UserService.create(createUserDto)`
+    return this.userService.create(createUserDto)
   }
   
   @Get()
   allUsers() {
-    return 'this.UserService.getAll()'
+    return this.userService.getAll()
   }
 
   @Get(':id')
   getUserById(@Param('id') id: string) {
-    return `this.UserService.getUser(id)`
+    return this.userService.getUserById(id)
   }
 
   @Patch(':id')
   updateUserById(@Body() updateUserDto: UpdateUserDto, @Param('id') id: string) {
-    return 'this.UserService.update(id, updateUserDto)'
+    return this.userService.update(updateUserDto, id)
   }
 
 }

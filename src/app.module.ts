@@ -14,6 +14,9 @@ import { OrderModule } from './order/order.module';
     MongooseModule.forRoot(`mongodb://127.0.0.1:27017/Web-market/market`, {
       connectionName: 'user',
     }),
+    MongooseModule.forRoot(`mongodb://127.0.0.1:27017/Web-market/market`, {
+      connectionName: 'product',
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
