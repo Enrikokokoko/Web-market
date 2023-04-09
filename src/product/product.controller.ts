@@ -2,9 +2,11 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { ProductService } from './product.service';
 
 @Controller('product')
 export class ProductController {
+    constructor(private readonly productService: ProductService) {}
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
     return '1';
