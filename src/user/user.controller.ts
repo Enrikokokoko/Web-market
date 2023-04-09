@@ -17,9 +17,9 @@ export class UserController {
     return this.userService.getAll()
   }
 
-  @Get(':id')
-  getUserById(@Param('id') id: string) {
-    return this.userService.getUserById(id)
+  @Get(':email')
+  getUserByEmail(@Param('email') email: string) {
+    return this.userService.getUserByEmail(email)
   }
 
   @Patch(':id')

@@ -19,8 +19,8 @@ export class UserService {
         return this.userModel.find().exec();
     }
 
-    async getUserById(id: string): Promise<User> {
-        return this.userModel.findById(id);
+    async getUserByEmail(email: string): Promise<User> {
+        return this.userModel.findById(email);
     }
 
     async update(userDto: UpdateUserDto, id: string): Promise<User> {
