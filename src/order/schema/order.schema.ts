@@ -8,14 +8,14 @@ export type OrderDocument = Order & Document;
 
 @Schema()
 export class Order {
-  @Prop()
+  @Prop({ unique: true })
   id: number;
 
   @Prop({ Type: Date })
   createdAt: Date;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Product' })
-  products: Product;
+  @Prop({ type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}] })
+  products: Product[];
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   userId: User;

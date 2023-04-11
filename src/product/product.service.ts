@@ -9,7 +9,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 @Injectable()
 export class ProductService {
     constructor(@InjectModel(Product.name, 'product') private productModel: Model<ProductDocument>) {}
-    
+
     async create(createDto: CreateProductDto): Promise<Product> {
         const newProduct = new this.productModel(createDto)
         return newProduct.save()
@@ -20,7 +20,7 @@ export class ProductService {
     }
 
     async getById(id: string): Promise<any> {
-        return this.productModel.findById(id)
+        return this.productModel.findOne({ id }).exec()
     }
 
     async updateById(updateDto: UpdateProductDto, id: string): Promise<any> {
