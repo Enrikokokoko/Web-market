@@ -6,7 +6,7 @@ import { UpdateOrderDto } from './dto/update-order.dto';
 @Injectable()
 export class OrderService {
     async create(createDto: CreateOrderDto) {
-        return '1'
+        const newOrder = 
     }
 
     async getAll() {

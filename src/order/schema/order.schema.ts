@@ -1,5 +1,10 @@
 /* eslint-disable prettier/prettier */
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose, { Document } from 'mongoose';
+import { Product } from '../../product/schema/product.schema'
+import { User } from '../../user/schema/user.schema'
+
+export type OrderDocument = Order & Document;
 
 @Schema()
 export class Order {
@@ -9,9 +14,11 @@ export class Order {
   @Prop({ Type: Date })
   createdAt: Date;
 
-  @Prop()
-  products: Array<any>;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Product' })
+  products: Product;
 
-  @Prop()
-  userId: number;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  userId: User;
 }
+
+export const OrderSchema = SchemaFactory.createForClass(Order)
