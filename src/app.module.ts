@@ -11,12 +11,18 @@ import { OrderModule } from './order/order.module';
     UserModule,
     ProductModule,
     OrderModule,
-    MongooseModule.forRoot(`mongodb://127.0.0.1:27017/Web-market/market`, {
-      connectionName: 'user',
-    }),
-    MongooseModule.forRoot(`mongodb://127.0.0.1:27017/Web-market/market`, {
-      connectionName: 'product',
-    }),
+    MongooseModule.forRoot(
+      `mongodb+srv://enriko:enriko123@cluster0.ietduup.mongodb.net/market?retryWrites=true&w=majority`,
+      {
+        connectionName: 'user',
+      },
+    ),
+    MongooseModule.forRoot(
+      `mongodb+srv://enriko:enriko123@cluster0.ietduup.mongodb.net/market?retryWrites=true&w=majority`,
+      {
+        connectionName: 'product',
+      },
+    ),
   ],
   controllers: [AppController],
   providers: [AppService],
