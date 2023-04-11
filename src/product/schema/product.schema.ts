@@ -6,9 +6,6 @@ export type ProductDocument = Product & Document
 
 @Schema()
 export class Product {
-  @Prop({ unique: true })
-  id: number;
-
   @Prop()
   name: string;
 

@@ -23,6 +23,12 @@ import { OrderModule } from './order/order.module';
         connectionName: 'product',
       },
     ),
+    MongooseModule.forRoot(
+      `mongodb+srv://enriko:enriko123@cluster0.ietduup.mongodb.net/market?retryWrites=true&w=majority`,
+      {
+        connectionName: 'order',
+      },
+    ),
   ],
   controllers: [AppController],
   providers: [AppService],

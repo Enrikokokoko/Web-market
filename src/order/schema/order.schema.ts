@@ -8,12 +8,6 @@ export type OrderDocument = Order & Document;
 
 @Schema()
 export class Order {
-  @Prop({ unique: true })
-  id: number;
-
-  @Prop({ Type: Date })
-  createdAt: Date;
-
   @Prop({ type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}] })
   products: Product[];
 

@@ -11,19 +11,19 @@ export class ProductService {
     constructor(@InjectModel(Product.name, 'product') private productModel: Model<ProductDocument>) {}
 
     async create(createDto: CreateProductDto): Promise<Product> {
-        const newProduct = new this.productModel(createDto)
+        const newProduct = new this.productModel({ ...createDto, createdAt: new Date() } )
         return newProduct.save()
     }
 
-    async getAll(): Promise<any> {
+    async getAll(): Promise<Product[]> {
         return this.productModel.find().exec()
     }
 
-    async getById(id: string): Promise<any> {
-        return this.productModel.findOne({ id }).exec()
+    async getById(id: string): Promise<Product> {
+        return this.productModel.findById(id).exec()
     }
 
-    async updateById(updateDto: UpdateProductDto, id: string): Promise<any> {
+    async updateById(updateDto: UpdateProductDto, id: string): Promise<Product> {
         return this.productModel.findByIdAndUpdate(id, updateDto, { new: true })
     }
 }
