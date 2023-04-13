@@ -14,6 +14,9 @@ export class Product {
 
   @Prop()
   description: string;
+
+  @Prop({ type: Date })
+  createdAt: Date;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product)

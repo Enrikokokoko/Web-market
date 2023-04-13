@@ -11,7 +11,7 @@ export class ProductService {
     constructor(@InjectModel(Product.name, 'product') private productModel: Model<ProductDocument>) {}
 
     async create(createDto: CreateProductDto): Promise<Product> {
-        const newProduct = new this.productModel({ ...createDto, createdAt: new Date() } )
+        const newProduct = new this.productModel({ ...createDto, createdAt: new Date() })
         return newProduct.save()
     }
 

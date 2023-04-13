@@ -13,6 +13,9 @@ export class Order {
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   userId: User;
+
+  @Prop({ type: Date })
+  createdAt: Date;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order)

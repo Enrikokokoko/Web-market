@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
 export class CreateOrderDto {
-  readonly poducts: number[];
+  readonly products: number[];
   readonly userId: number;
 }
