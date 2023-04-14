@@ -19,18 +19,22 @@ export class OrderService {
     async create(createDto: CreateOrderDto): Promise<Order> {
         const user = await this.userModel.findOne({ _id:createDto.userId })
         const product = await this.productModel.find({ _id:createDto.products })
-        const summProduct = product.reduce((a,b) => {
-            return a + b.price;
+        const summProduct = product.reduce((amount, products) => {
+            return amount + products.price;
         }, 0)
+
         if(!user) {
             throw new HttpException('User not found', HttpStatus.BAD_REQUEST)
-        } else if (user.balance < summProduct) {
+        } 
+        
+        if (user.balance < summProduct) {
             throw new HttpException('User dont have enough money', HttpStatus.BAD_REQUEST)
-        } else{
-            const newOrder = new this.orderModel({ ...createDto, createdAt: new Date(), });
-            await this.userModel.updateOne({ _id:createDto.userId }, { balance: user.balance - summProduct });
-            return newOrder.save();
         }
+        
+        const newOrder = new this.orderModel({ ...createDto, createdAt: new Date(), });
+        await this.userModel.updateOne({ _id:createDto.userId }, { balance: user.balance - summProduct });
+        return newOrder.save();
+        
     }
 
     async getAll(): Promise<Order[]> {

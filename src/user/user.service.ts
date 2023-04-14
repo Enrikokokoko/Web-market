@@ -5,13 +5,16 @@ import { Model } from 'mongoose';
 import { User, UserDocument } from './Schema/user.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { createHash } from 'crypto';
 
 @Injectable()
 export class UserService {
    constructor(@InjectModel(User.name, 'user') private userModel: Model<UserDocument>) {}
     
     async create(userDto: CreateUserDto): Promise<User> {
-        const user = new this.userModel({ ...userDto, createdAt: new Date() })
+        const hash = createHash('sha256').update(userDto.password).digest('hex') 
+        
+        const user = new this.userModel({ ...userDto, createdAt: new Date(), password: hash })
         return user.save()
     }
     
