@@ -29,4 +29,10 @@ export class AuthService {
             throw new HttpException({ message: 'Login successful' }, HttpStatus.ACCEPTED)
         }
     }
+
+    async logout (username: string, password: string): Promise<Auth> {
+        return {
+            username, password
+        }
+    }
 }

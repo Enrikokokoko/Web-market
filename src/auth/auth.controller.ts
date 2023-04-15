@@ -2,18 +2,24 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { AuthService } from './auth.service';
+import { Auth } from './schema/auth.schema';
 
 @Controller('auth')
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
     @Post('registr')
-    registr(@Body() createAuthDto: CreateAuthDto) {
+    registr(@Body() createAuthDto: CreateAuthDto): Promise<Auth> {
         return this.authService.registration(createAuthDto)
     }
 
     @Post('login')
-    login(@Body() signInDto: Record<string, any>) {
+    login(@Body() signInDto: Record<string, any>): Promise<Auth> {
         return this.authService.signIn(signInDto.username, signInDto.password)
+    }
+
+    @Post('logout')
+    logOut(@Body() signOutDto: Record<string, any>): any {
+        return signOutDto
     }
 
 }

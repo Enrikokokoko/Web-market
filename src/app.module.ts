@@ -5,14 +5,12 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
-import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     UserModule,
     ProductModule,
     OrderModule,
-    AuthModule,
     MongooseModule.forRoot(
       `mongodb+srv://enriko:enriko123@cluster0.ietduup.mongodb.net/market?retryWrites=true&w=majority`,
       {
