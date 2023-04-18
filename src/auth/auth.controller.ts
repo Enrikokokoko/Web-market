@@ -13,8 +13,12 @@ export class AuthController {
     }
 
     @Post('login')
-    login(@Body() signInDto: Record<string, any>): Promise<Auth> {
-        return this.authService.signIn(signInDto.username, signInDto.password)
+    async login(@Body() signInDto: CreateAuthDto): Promise<object> {
+        const user = await this.authService.signIn(signInDto.username, signInDto.password)
+
+        const token = await this.authService.sign({ username: user.username })
+
+        return { token }
     }
 
     @Post('logout')
