@@ -1,14 +1,16 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { OrderService } from './order.service';
 import { Order } from './schema/order.schema';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('order')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
+  @UseGuards(AuthGuard)
   @Post()
   create(@Body() createOrderDto: CreateOrderDto):Promise<Order>  {
     return this.orderService.create(createOrderDto);
