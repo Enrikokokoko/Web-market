@@ -4,9 +4,9 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Order, OrderDocument } from './schema/order.schema';
 import { User, UserDocument } from 'src/user/Schema/user.schema';
-import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { Product, ProductDocument } from 'src/product/schema/product.schema';
+import { OrderInterface } from './interface/order.interface';
 
 @Injectable()
 export class OrderService {
@@ -18,7 +18,7 @@ export class OrderService {
 
 
 
-    async create(createDto: CreateOrderDto): Promise<Order> {
+    async create(createDto: OrderInterface): Promise<Order> {
         const user = await this.userModel.findOne({ _id:createDto.userId })
         const product = await this.productModel.find({ _id:createDto.products })
         const summProduct = product.reduce((amount, products) => {
