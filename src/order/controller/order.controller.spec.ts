@@ -89,11 +89,3 @@ describe('OrderController', () => {
     })
   })
 });
-
-
-function func(body, req) {
-    console.log(body);
-    console.log(req.headers);
-    
-    
-}
