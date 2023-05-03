@@ -1,20 +1,20 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
-import { ProductService } from './product.service';
-import { Product } from './schema/product.schema';
+import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { CreateProductDto } from '../dto/create-product.dto';
+import { UpdateProductDto } from '../dto/update-product.dto';
+import { ProductService } from '../product.service';
+import { Product } from '../schema/product.schema';
 
 @Controller('product')
 export class ProductController {
     constructor(private readonly productService: ProductService) {}
   @Post()
-  create(@Body() createProductDto: CreateProductDto): Promise<Product> {
+  createProduct(@Body() createProductDto: CreateProductDto): Promise<Product> {
     return this.productService.create(createProductDto);
   }
 
   @Get()
-  getAll(): Promise<Product[]> {
+  getAllProducts(): Promise<Product[]> {
     return this.productService.getAll()
   }
 

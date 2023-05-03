@@ -2,11 +2,11 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Order, OrderDocument } from './schema/order.schema';
-import { User, UserDocument } from 'src/user/Schema/user.schema';
-import { UpdateOrderDto } from './dto/update-order.dto';
-import { Product, ProductDocument } from 'src/product/schema/product.schema';
-import { OrderInterface } from './interface/order.interface';
+import { Order, OrderDocument } from '../schema/order.schema';
+import { User, UserDocument } from '../../user/Schema/user.schema';
+import { UpdateOrderDto } from '../dto/update-order.dto';
+import { Product, ProductDocument } from '../../product/schema/product.schema';
+import { OrderInterface } from '../interface/order.interface';
 
 @Injectable()
 export class OrderService {

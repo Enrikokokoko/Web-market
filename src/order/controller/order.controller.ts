@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import { Body, Controller, Get, Param, Patch, Post, Req, UseGuards } from '@nestjs/common';
-import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderDto } from './dto/update-order.dto';
-import { OrderService } from './order.service';
-import { Order } from './schema/order.schema';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { CreateOrderDto } from '../dto/create-order.dto';
+import { UpdateOrderDto } from '../dto/update-order.dto';
+import { OrderService } from '../service/order.service';
+import { Order } from '../schema/order.schema';
+import { AuthGuard } from '../../auth/auth.guard';
 
 @Controller('order')
 export class OrderController {
@@ -13,12 +13,6 @@ export class OrderController {
   @UseGuards(AuthGuard)
   @Post()
   create(@Body() createOrderDto: CreateOrderDto, @Req() req: any):Promise<any>  {
-    // const user = req.user
-    // if(user.sub !== createOrderDto.userId) {
-    //   throw new HttpException('Invalid token', 401)
-    // }
-    
-    // return this.orderService.create(createOrderDto);
     return this.orderService.create({...createOrderDto, userId: req.user.sub})
   }
 

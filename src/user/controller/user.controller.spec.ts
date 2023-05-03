@@ -29,7 +29,7 @@ describe('UserController', () => {
       lastName: 'string',
       balance: 1,
       password: 'string',
-    })
+    },)
 
 
     const module: TestingModule = await Test.createTestingModule({
@@ -57,12 +57,12 @@ describe('UserController', () => {
   describe('createUser', () => {
     it('Should return created user', async () => {
       const user = await userController.createUser({     
-      email: 'string',
-      username: 'string',
-      firstName: 'string',
-      lastName: 'string',
-      balance: 1,
-      password: 'string',
+        email: 'string',
+        username: 'string',
+        firstName: 'string',
+        lastName: 'string',
+        balance: 1,
+        password: 'string',
     })
 
       expect(createMock).toHaveBeenCalledTimes(1);
@@ -92,8 +92,8 @@ describe('UserController', () => {
       }, 'id');
 
       expect(updateMock).toHaveBeenCalledTimes(1);
-      expect(user).toHaveProperty('id')
-      expect(user).toEqual(user)
+      expect(user).toHaveProperty('id');
+      expect(user).toEqual(user);    
     })
   })
 });

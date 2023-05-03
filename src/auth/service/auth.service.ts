@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
+import { CreateAuthDto } from '../dto/create-auth.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { createHash } from 'crypto';
 import { JwtService } from '@nestjs/jwt';
-import { User, UserDocument } from 'src/user/Schema/user.schema';
+import { User, UserDocument } from '../../user/Schema/user.schema';
 
 @Injectable()
 export class AuthService {
