@@ -27,12 +27,14 @@ describe('ProductController', () => {
 
     const module: TestingModule = await Test.createTestingModule({
         controllers: [ProductController],
-        providers: [{ provide: ProductService, useValue: {
-             getAll: getAllMock, 
-             getById: getByMock,
-             create: createMock,
-             updateById: updateMock,
-             }
+        providers: [{ 
+            provide: ProductService, 
+            useValue: {
+                getAll: getAllMock, 
+                getById: getByMock,
+                create: createMock,
+                updateById: updateMock,
+            }
         }]
     }).compile();
 
@@ -41,21 +43,21 @@ describe('ProductController', () => {
   
  describe('allProducts', () => {
     it('Should call getAll method in service', async () => {
-        const products = await productController.getAllProducts()
+        const products = await productController.getAllProducts();
 
         expect(getAllMock).toHaveBeenCalledTimes(1);
-        expect(products).toHaveLength(1)
-    })
- }) 
+        expect(products).toHaveLength(1);
+    });
+  }); 
 
  describe('getProductById', () => {
     it('Should call getById method in service', async () => {
-        const product = await productController.getProductById('id')
+        const product = await productController.getProductById('id');
 
         expect(getByMock).toHaveBeenCalledTimes(1);
-        expect(product).toEqual({id: 1})
-    })
- })
+        expect(product).toEqual({id: 1});
+    });
+  });
  
  describe('createProduct', () => {
     it('Should call create method in service', async () => {
@@ -63,12 +65,12 @@ describe('ProductController', () => {
          name: 'string',
          price: 1,
          description: 'string',
-        })
+        });
 
     expect(createMock).toHaveBeenCalledTimes(1);
-    expect(product).toEqual(product)
-    })
- })
+    expect(product).toEqual(product);
+    });
+  });
 
  describe('updateProductById', () => {
     it('Should call update method on service', async () => {
@@ -81,7 +83,6 @@ describe('ProductController', () => {
         expect(updateMock).toHaveBeenCalledTimes(1);
         expect(product).toHaveProperty('id');
         expect(product).toEqual(product);
-    })  
- })
-
+    }); 
+  });
 });

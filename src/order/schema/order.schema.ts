@@ -8,7 +8,7 @@ export type OrderDocument = Order & Document;
 
 @Schema()
 export class Order {
-  @Prop({ type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}] })
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }] })
   products: Product[];
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })

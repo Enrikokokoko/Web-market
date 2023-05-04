@@ -12,22 +12,22 @@ export class OrderController {
 
   @UseGuards(AuthGuard)
   @Post()
-  create(@Body() createOrderDto: CreateOrderDto, @Req() req: any):Promise<any>  {
-    return this.orderService.create({...createOrderDto, userId: req.user.sub})
-  }
+  create(@Body() createOrderDto: CreateOrderDto, @Req() req: any): Promise<any> {
+    return this.orderService.create({...createOrderDto, userId: req.user.userId})
+  };
 
   @Get()
-  getAllOrders(): Promise<Order[]>  {
+  getAllOrders(): Promise<Order[]> {
     return this.orderService.getAll()
-  }
+  };
 
   @Get(':id')
-  getOrderById(@Param('id') id: string): Promise<Order>  {
+  getOrderById(@Param('id') id: string): Promise<Order> {
     return this.orderService.getById(id)
-  }
+  };
 
   @Patch(':id')
-  updateOrderById(@Body() updateOrderDto: UpdateOrderDto, @Param('id') id: string): Promise<Order>  {
+  updateOrderById(@Body() updateOrderDto: UpdateOrderDto, @Param('id') id: string): Promise<Order> {
     return this.orderService.update(id, updateOrderDto)
-  }
+  };
 }
