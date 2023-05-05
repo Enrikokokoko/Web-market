@@ -9,7 +9,7 @@ import { createHash } from 'crypto';
 
 @Injectable()
 export class UserService {
-   constructor(@InjectModel(User.name, 'user') private userModel: Model<UserDocument>) {}
+   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
     
     async create(userDto: CreateUserDto): Promise<User> {
         const hash = createHash('sha256').update(userDto.password).digest('hex') 
