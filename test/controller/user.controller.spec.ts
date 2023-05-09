@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from '../service/user.service';
+import { UserController } from '../../src/user/controller/user.controller';
+import { UserService } from '../../src/user/service/user.service';
 
 describe('UserController', () => {
-  let userService: UserService;
+  let userController: UserController;
   let getAllMock: jest.Mock;
   let createMock: jest.Mock;
   let getByMock: jest.Mock;
@@ -11,7 +12,7 @@ describe('UserController', () => {
 
   beforeAll(async () => {
     getAllMock = jest.fn().mockReturnValue([{}]);
-    getByMock = jest.fn().mockReturnValue({ email: 'qwe@qwe.qwe' });
+    getByMock = jest.fn().mockReturnValue({email: 'qwe@qwe.qwe'});
     createMock = jest.fn().mockReturnValue({     
       email: 'string',
       username: 'string',
@@ -31,6 +32,7 @@ describe('UserController', () => {
     });
 
     const module: TestingModule = await Test.createTestingModule({
+        controllers: [UserController],
         providers: [{ 
           provide: UserService, 
           useValue: { 
@@ -41,21 +43,21 @@ describe('UserController', () => {
           }}],
     }).compile();
 
-    userService = module.get<UserService>(UserService);
+    userController = module.get<UserController>(UserController);
   });
 
-  describe('getAll', () => {
+  describe('allUsers', () => {
   it('Should return an array of user', async () => {
-      const users = await userService.getAll();
+      const users = await userController.allUsers();
 
       expect(getAllMock).toHaveBeenCalledTimes(1);
       expect(users).toHaveLength(1);
     });
   });
 
-  describe('create', () => {
+  describe('createUser', () => {
     it('Should return created user', async () => {
-      const user = await userService.create({     
+      const user = await userController.createUser({     
         email: 'string',
         username: 'string',
         firstName: 'string',
@@ -70,18 +72,18 @@ describe('UserController', () => {
   });
 
 
-  describe('getUserByEmail', () => {
+  describe('getEmail', () => {
     it('Should return user by email', async () => {
-      const user = await userService.getUserByEmail('email');
+      const user = await userController.getEmail('email');
       
       expect(getByMock).toHaveBeenCalledTimes(1);
       expect(user).toEqual({email: 'qwe@qwe.qwe'});
     });
   });
 
-  describe('update', () => {
+  describe('updateUser', () => {
     it('Should return updated user', async () => {
-      const user = await userService.update({
+      const user = await userController.updateUser({
         email: 'string',
       username: 'string',
       firstName: 'string',

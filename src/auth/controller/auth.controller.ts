@@ -14,8 +14,8 @@ export class AuthController {
 
     @Post('login')
     login(@Body() signInDto: CreateAuthDto): Promise<User> {
-
-        return this.authService.signIn(signInDto.username, signInDto.password)
+        const result =  this.authService.signIn(signInDto.username, signInDto.password)
+        return result
     }
 
     @Post('logout')

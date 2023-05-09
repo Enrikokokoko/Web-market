@@ -28,6 +28,6 @@ export class OrderController {
 
   @Patch(':id')
   updateOrderById(@Body() updateOrderDto: UpdateOrderDto, @Param('id') id: string): Promise<Order> {
-    return this.orderService.update(id, updateOrderDto)
+    return this.orderService.update(updateOrderDto, id)
   };
 }

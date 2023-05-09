@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Test, TestingModule } from '@nestjs/testing';
-import { ProductController } from './product.controller';
-import { ProductService } from '../product.service';
+import { ProductController } from '../../src/product/controller/product.controller';
+import { ProductService } from '../../src/product/product.service';
 
 describe('ProductController', () => {
   let productController: ProductController;

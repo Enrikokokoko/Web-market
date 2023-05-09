@@ -18,8 +18,7 @@ export class AuthService {
 
         const hash = createHash('sha256').update(createDto.password).digest('hex')
 
-        const user = new this.authModel({ ...createDto, password: hash});
-        return user.save()
+        return this.authModel.create({ ...createDto, password: hash});
     }
 
     async signIn(username: string, password: string): Promise<any> {
@@ -29,9 +28,11 @@ export class AuthService {
 
         if(!user) {
             throw new HttpException({ message: 'Invalid username or password' }, HttpStatus.BAD_REQUEST)
-        } else if (user.password !== hash) {
+        } 
+        else if (user.password !== hash) {
             throw new HttpException({ message: 'Invalid username or password' }, HttpStatus.BAD_REQUEST)
-        } else {
+        } 
+        else {
             const payload = { username: user.username, userId: user._id }
             return { 
                 accessToken: await this.jwtService.signAsync(payload)
