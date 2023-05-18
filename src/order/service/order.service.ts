@@ -31,9 +31,9 @@ export class OrderService {
             throw new HttpException('User dont have enough money', HttpStatus.BAD_REQUEST);
         };
         
-        const newOrder = new this.orderModel({ ...createDto, createdAt: new Date(), });
+        
         await this.userModel.updateOne({ _id:createDto.userId }, { balance: user.balance - summProduct });
-        return newOrder.save();    
+        return this.orderModel.create({ ...createDto, createdAt: new Date(), });   
     };
 
     async getAll(): Promise<Order[]> {
@@ -44,7 +44,7 @@ export class OrderService {
         return this.orderModel.findById(id).exec();
     };
 
-    async update(id: string, updateDto: UpdateOrderDto): Promise<Order> {
+    async update(updateDto: UpdateOrderDto, id: string,): Promise<Order> {
         return this.orderModel.findByIdAndUpdate(id, updateDto, { new: true });
     };
 }

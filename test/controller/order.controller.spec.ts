@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { Test, TestingModule } from '@nestjs/testing';
-import { OrderController } from './order.controller';
-import { OrderService } from '../service/order.service';
-import { UserService } from '../../user/service/user.service';
+import { OrderController } from '../../src/order/controller/order.controller';
+import { OrderService } from '../../src/order/service/order.service';
+import { UserService } from '../../src/user/service/user.service';
 import { JwtModule } from '@nestjs/jwt';
 
 describe('OrderController', () => {
